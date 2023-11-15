@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Carousel</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .carousel-container {
+      width: 80%;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    .carousel-wrapper {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Optional: Add styling for navigation buttons */
+
+    .carousel-button {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      font-size: 18px;
+      transform: translateY(-50%);
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="carousel-container">
+  <div class="carousel-wrapper">
+    <div class="carousel-item">
+      <!-- Content for the first slide -->
+      <img src="images/spag.png" alt="Slide 1">
+    </div>
+    <div class="carousel-item">
+      <!-- Content for the second slide -->
+      <img src="images/food.jpg" alt="Slide 2">
+    </div>
+    <!-- Add more .carousel-item for additional slides -->
+  </div>
+</div>
+
+<!-- Optional: Add navigation buttons -->
+<button class="carousel-button prev" onclick="prevSlide()">‹</button>
+<button class="carousel-button next" onclick="nextSlide()">›</button>
+
+<script>
+  // JavaScript to handle carousel navigation
+  let currentIndex = 0;
+
+  function showSlide(index) {
+    const wrapper = document.querySelector('.carousel-wrapper');
+    const slideWidth = document.querySelector('.carousel-item').offsetWidth;
+
+    currentIndex = index;
+    const translateValue = -currentIndex * slideWidth;
+    wrapper.style.transform = `translateX(${translateValue}px)`;
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + getTotalSlides()) % getTotalSlides();
+    showSlide(currentIndex);
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % getTotalSlides();
+    showSlide(currentIndex);
+  }
+
+  function getTotalSlides() {
+    return document.querySelectorAll('.carousel-item').length;
+  }
+</script>
+
+</body>
+</html>
+<!-- <div class="column1">
+        <div class="info-1">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide"><img src="images/sushi-roll.jpg"></div>
+                  <div class="swiper-slide"><img src="images/slide1.jpg"></div>
+                  <div class="swiper-slide"><img src="images/slide2.jpg"></div>
+                  <div class="swiper-slide"><img src="images/slide3.jpg"></div>
+                  <div class="swiper-slide"><img src="images/slide4.jpg"></div>
+                  <div class="swiper-slide"><img src="images/slide5.jpg"></div>
+          
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+-->
+
+<!--.curve{
+    position: absolute;
+    height: 225px;
+    width: 100px;
+    bottom: 0;
+}
+.curve::before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 100% 50%;
+    width: 55%;
+    height: 100%;
+    background-color: #202732;
+}
+.curve::after{
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 100% 50%;
+    width: 55%;
+    height: 100%;
+    background-color: #3c32dd;
+}-->
